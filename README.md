@@ -11,6 +11,7 @@ A rendszer Docker alapú, és az alábbi szolgáltatásokat nyújtja:
 | **Traefik** | [https://traefik.localhost/dashboard/](https://traefik.localhost/dashboard/) | Reverse proxy és SSL terminálás. |
 | **Portainer** | [https://portainer.localhost](https://portainer.localhost) | Grafikus felület Docker konténerek kezeléséhez. |
 | **Mailhog** | [https://mailhog.localhost](https://mailhog.localhost) | Lokális SMTP szerver e-mailek teszteléséhez (SMTP port: 1025). |
+| **Adminer** | [https://adminer.localhost](https://adminer.localhost) | Webes adatbázis kliens (MySQL, Postgres). |
 
 ## Követelmények
 
@@ -34,7 +35,9 @@ Ha a rendszer már telepítve van, az indítás egyszerű:
     ```bash
     cd portainer
     docker compose up -d
-    cd ../mailhog
+    cd mailhog
+    docker compose up -d
+    cd ../adminer
     docker compose up -d
     ```
 

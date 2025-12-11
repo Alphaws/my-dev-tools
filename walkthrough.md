@@ -12,6 +12,7 @@ A fejlesztői környezet sikeresen telepítve lett. Az alábbiakban leírjuk a r
     - Traefik Dashboard: [https://traefik.localhost/dashboard/](https://traefik.localhost/dashboard/)
     - Portainer: [https://portainer.localhost](https://portainer.localhost)
     - Mailhog: [https://mailhog.localhost](https://mailhog.localhost)
+    - Adminer: [https://adminer.localhost](https://adminer.localhost)
     - Projektek: `[projekt-neve].localhost`
 
 ## 2. Traefik Indítása
