@@ -1,0 +1,19 @@
+services:
+  mailhog:
+    image: mailhog/mailhog:latest
+    container_name: mailhog
+    restart: unless-stopped
+    ports:
+      - "1025:1025" # SMTP port exposed to host
+    networks:
+      - web-gateway
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.mailhog.rule=Host(`mailhog.localhost`)"
+      - "traefik.http.routers.mailhog.entrypoints=websecure"
+      - "traefik.http.routers.mailhog.tls=true"
+      - "traefik.http.services.mailhog.loadbalancer.server.port=8025"
+
+networks:
+  web-gateway:
+    external: true

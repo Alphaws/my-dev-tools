@@ -1,0 +1,12 @@
+# Sensitive data and certificates
+tool/traefik/certs/
+*.pem
+*.key
+*.crt
+
+# Persistent data directories
+**/data/
+
+# OS specific
+.DS_Store
+Thumbs.db

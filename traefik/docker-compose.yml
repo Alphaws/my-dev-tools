@@ -1,0 +1,40 @@
+services:
+  traefik:
+    image: traefik:latest
+    container_name: traefik
+    command:
+      - "--api.dashboard=true"
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
+      - "--providers.file.directory=/etc/traefik/config"
+      - "--providers.file.watch=true"
+      - "--entrypoints.web.address=:80"
+      - "--entrypoints.web.http.redirections.entryPoint.to=websecure"
+      - "--entrypoints.web.http.redirections.entryPoint.scheme=https"
+      - "--entrypoints.websecure.address=:443"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.dashboard.rule=Host(`traefik.localhost`)"
+      - "traefik.http.routers.dashboard.service=api@internal"
+      - "traefik.http.routers.dashboard.entrypoints=websecure"
+      - "traefik.http.routers.dashboard.tls=true"
+    ports:
+      - "80:80"
+      - "443:443"
+      - "8080:8080"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+      - "./certs:/etc/traefik/certs:ro"
+      - "./config:/etc/traefik/config:ro"
+    environment:
+      - DOCKER_API_VERSION=1.44
+      - DOCKER_CLIENT_API_VERSION=1.44
+      - DOCKER_HOST=unix:///var/run/docker.sock
+    networks:
+      - web-gateway
+    restart: unless-stopped
+
+networks:
+  web-gateway:
+    name: web-gateway
+    driver: bridge

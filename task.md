@@ -1,0 +1,52 @@
+# Fejlesztői Környezet Telepítése
+
+- [x] Környezet Tervezése
+    - [x] Felmérni a jelenlegi rendszert
+    - [x] Implementation Plan elkészítése
+- [x] Rendszerfrissítés és Alapvető Eszközök
+    - [x] curl, git, build-essential, zsh telepítése
+- [x] Docker Környezet
+    - [x] Docker Engine telepítése
+    - [x] Docker Compose telepítése
+    - [x] Felhasználó hozzáadása a docker csoporthoz
+- [x] Node.js Környezet
+    - [x] Node.js és npm telepítése
+- [/] Lokális Traefik Konfiguráció
+    - [/] Mappaszerkezet (`tools/traefik`) létrehozása
+- [x] Lokális Traefik Konfiguráció
+    - [x] Mappaszerkezet (`tools/traefik`) létrehozása
+    - [x] `docker-compose.yml` létrehozása Traefikhez
+    - [x] Docker API verzió inkompatibilitás javítása
+    - [x] Dinamikus konfiguráció (SSL tanúsítványokhoz, opcionális)
+    - [x] `*.localhost` működésének ellenőrzése
+- [x] Validáció
+    - [x] Traefik dashboard elérése
+    - [x] Teszt webalkalmazás (Docker container) indítása és elérése subdomainen keresztül
+- [x] Lokális HTTPS Beállítása
+    - [x] `mkcert` telepítése és CA inicializálása
+    - [x] Tanúsítványok generálása (`*.localhost`, `localhost`)
+    - [x] Traefik dinamikus konfiguráció (`dynamic.yml`) létrehozása
+    - [x] `docker-compose.yml` frissítése (443 port, volume-ok)
+    - [x] HTTP -> HTTPS átirányítás beállítása
+    - [x] Validáció (curl https teszt)
+- [x] Traefik Dashboard HTTPS Beállítása
+    - [x] `api.insecure` kikapcsolása
+    - [x] Traefik container címkézése (`Host(traefik.localhost)` -> `api@internal`)
+    - [x] Validáció (https://traefik.localhost/dashboard/)
+- [x] Portainer Telepítése
+    - [x] `tools/portainer` mappa és adattároló volume mappa létrehozása
+    - [x] `docker-compose.yml` elkészítése Traefik címkékkel
+    - [x] Tanúsítvány generálása (`portainer.localhost`)
+    - [x] Indítás és admin felhasználó létrehozása
+    - [x] Validáció (https://portainer.localhost)
+- [x] Mailhog Telepítése
+    - [x] `tools/mailhog` mappa létrehozása
+    - [x] `docker-compose.yml` elkészítése Traefik címkékkel
+    - [x] Tanúsítvány generálása (`mailhog.localhost`)
+    - [x] Indítás és validáció (https://mailhog.localhost)
+- [x] Git Verziókezelés
+    - [x] `git init` és `.gitignore` létrehozása (certs/data kizárása)
+    - [x] Fájlok hozzáadása és commit
+    - [x] GitHub távoli tároló beállítási instrukciók
+- [x] Dokumentáció
+    - [x] README.md létrehozása
