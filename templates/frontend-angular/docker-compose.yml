@@ -1,0 +1,19 @@
+services:
+  web:
+    build: .
+    container_name: frontend-app
+    volumes:
+      - .:/app
+    command: npm start -- --host 0.0.0.0 --disable-host-check
+    networks:
+      - web-gateway
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.frontend-app.rule=Host(`frontend-app.localhost`)"
+      - "traefik.http.routers.frontend-app.entrypoints=websecure"
+      - "traefik.http.routers.frontend-app.tls=true"
+      - "traefik.http.services.frontend-app.loadbalancer.server.port=4200"
+
+networks:
+  web-gateway:
+    external: true

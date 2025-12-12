@@ -56,3 +56,10 @@
     - [x] Tanúsítvány generálása (`adminer.localhost`)
     - [x] Indítás és validáció (https://adminer.localhost)
     - [x] Dokumentáció frissítése és Git commit
+- [ ] Sablonok Létrehozása
+    - [x] `templates` mappa létrehozása
+    - [x] Python (FastAPI) Docker minta (`docker-compose.yml`, `Dockerfile`)
+    - [x] PHP (Laravel/General) Docker minta
+    - [x] Frontend (Angular/React) Docker minta
+    - [ ] `templates/README.md` létrehozása (hogyan használd)
+    - [ ] Git commit és push

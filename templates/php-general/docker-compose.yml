@@ -1,0 +1,17 @@
+services:
+  web:
+    build: .
+    container_name: php-app
+    volumes:
+      - ./src:/var/www/html
+    networks:
+      - web-gateway
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.php-app.rule=Host(`php-app.localhost`)"
+      - "traefik.http.routers.php-app.entrypoints=websecure"
+      - "traefik.http.routers.php-app.tls=true"
+
+networks:
+  web-gateway:
+    external: true
