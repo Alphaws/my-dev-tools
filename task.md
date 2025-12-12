@@ -61,5 +61,5 @@
     - [x] Python (FastAPI) Docker minta (`docker-compose.yml`, `Dockerfile`)
     - [x] PHP (Laravel/General) Docker minta
     - [x] Frontend (Angular/React) Docker minta
-    - [ ] `templates/README.md` létrehozása (hogyan használd)
-    - [ ] Git commit és push
+    - [x] `templates/README.md` létrehozása (hogyan használd)
+    - [x] Git commit és push
