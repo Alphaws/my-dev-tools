@@ -50,9 +50,9 @@
     - [x] GitHub távoli tároló beállítási instrukciók
 - [x] Dokumentáció
     - [x] README.md létrehozása
-- [/] Adminer Telepítése
-    - [/] `tools/adminer` mappa létrehozása
-    - [/] `docker-compose.yml` elkészítése Traefik címkékkel
-    - [/] Tanúsítvány generálása (`adminer.localhost`)
+- [x] Adminer Telepítése
+    - [x] `tools/adminer` mappa létrehozása
+    - [x] `docker-compose.yml` elkészítése Traefik címkékkel
+    - [x] Tanúsítvány generálása (`adminer.localhost`)
     - [x] Indítás és validáció (https://adminer.localhost)
-    - [/] Dokumentáció frissítése és Git commit
+    - [x] Dokumentáció frissítése és Git commit
