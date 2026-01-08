@@ -37,12 +37,12 @@ services:
       - "traefik.enable=true"
       - "traefik.http.routers.my-php-app.rule=Host(`my-php-app.localhost`)"
     networks:
-      - web-gateway
+      - traefik
     volumes:
       - ./src:/var/www/html
 
 networks:
-  web-gateway:
+  traefik:
     external: true
 ```
 
@@ -96,7 +96,7 @@ services:
   app: # A szolgáltatás neve az eredeti compose fájlból
     labels:
       - "traefik.enable=true"
-      - "traefik.docker.network=web-gateway" # A közös hálózat neve
+      - "traefik.docker.network=traefik" # A közös hálózat neve
       - "traefik.http.routers.my-app.rule=Host(`projekt.localhost`)"
       - "traefik.http.routers.my-app.tls=true"
       # Ha az eredeti projekt nem állította be a Let's Encryptet, itt kapcsold ki a resolver kérést:
@@ -107,7 +107,7 @@ services:
 networks:
   traefik:
     external: true
-    name: web-gateway # A te lokális hálózatod neve
+    name: traefik # A te lokális hálózatod neve
 ```
 
 Ez a módszer tisztán tartja az eredeti projektfájlokat, miközben illeszti őket a helyi környezethez.

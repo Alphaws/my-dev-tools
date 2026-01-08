@@ -11,5 +11,5 @@ services:
       - traefik
 
 networks:
-  traefik:_
+  traefik:
     external: true
