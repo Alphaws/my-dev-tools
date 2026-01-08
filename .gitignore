@@ -1,5 +1,5 @@
 # Sensitive data and certificates
-tool/traefik/certs/
+traefik/certs/
 *.pem
 *.key
 *.crt
