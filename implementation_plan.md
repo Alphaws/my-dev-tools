@@ -27,4 +27,4 @@ A cél egy alapvető, Docker-alapú webfejlesztői környezet kialakítása, ame
 - **Funkció**: Webes kliens MySQL, PostgreSQL és egyéb adatbázisokhoz.
 
 ## Integráció
-Minden eszköz közös Docker hálózaton (`web-gateway`) kommunikál, és a Traefik címkéken keresztül érhető el.
+Minden eszköz közös Docker hálózaton (`traefik`) kommunikál, és a Traefik címkéken keresztül érhető el.

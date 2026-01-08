@@ -1,10 +1,10 @@
 # Fejlesztői Környezet Használati Útmutató
 
-A fejlesztői környezet sikeresen telepítve lett. Az alábbiakban leírjuk a rendszer használatát és bővítését.
+Ez a dokumentáció a lokális `tools` környezet használatát és bővítését írja le.
 
 ## 1. Rendszer Áttekintés
 
-- **Fő könyvtár**: `/home/alphaws/Develop`
+- **Fő könyvtár**: `/home/alphaws/Develop/tools`
 - **Traefik helye**: `/home/alphaws/Develop/tools/traefik`
 - **Elérési címek**:
     - Traefik Dashboard: [https://traefik.localhost/dashboard/](https://traefik.localhost/dashboard/)
@@ -13,7 +13,16 @@ A fejlesztői környezet sikeresen telepítve lett. Az alábbiakban leírjuk a r
     - Adminer: [https://adminer.localhost](https://adminer.localhost)
     - Projektek: `[projekt-neve].localhost`
 
-## 2. Traefik Indítása
+## 2. Indítás
+
+### Teljes stack indítása (ajánlott)
+
+```bash
+cd /home/alphaws/Develop/tools
+docker compose up -d
+```
+
+### Traefik indítása (külön)
 
 A Traefiknek mindig futnia kell, ha el szeretnéd érni a projektjeidet a `.localhost` címeken.
 
@@ -34,6 +43,9 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.my-php-app.rule=Host(`my-php-app.localhost`)"
+      - "traefik.http.routers.my-php-app.entrypoints=websecure"
+      - "traefik.http.routers.my-php-app.tls=true"
+      - "traefik.docker.network=traefik"
     networks:
       - traefik
     volumes:
@@ -42,6 +54,7 @@ services:
 networks:
   traefik:
     external: true
+    name: traefik
 ```
 
 Indítsd el a projektet:
@@ -49,7 +62,7 @@ Indítsd el a projektet:
 docker compose up -d
 ```
 
-Ez a projekt a **http://my-php-app.localhost** címen lesz elérhető.
+Ez a projekt a **https://my-php-app.localhost** címen lesz elérhető.
 
 ## 4. Validáció (Whoami)
 
@@ -61,7 +74,7 @@ cd /home/alphaws/Develop/tools/traefik
 docker compose -f validation-compose.yml up -d
 ```
 
-ellenőrzés:
+Ellenőrzés:
 Nyisd meg a [https://whoami.localhost](https://whoami.localhost) címet.
 A böngészőnek biztonságos kapcsolatot (lakat ikon) kell mutatnia.
 

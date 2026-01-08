@@ -23,15 +23,25 @@ A rendszer Docker alapú, és az alábbi szolgáltatásokat nyújtja:
 
 A részletes telepítési lépéseket a [task.md](task.md) tartalmazza.
 
-Ha a rendszer már telepítve van, az indítás egyszerű:
+Ha a rendszer már telepítve van, az indítás egyszerű.
 
-1. **Traefik indítása** (Ennek mindig futnia kell):
+### Teljes stack indítása (ajánlott)
+
+```bash
+docker compose up -d
+```
+
+### Egyes eszközök indítása (opcionális)
+
+Traefiknek mindig futnia kell, ha el szeretnéd érni a projektjeidet a `.localhost` címeken.
+
+1. **Traefik indítása**:
     ```bash
     cd traefik
     docker compose up -d
     ```
 
-2. **Eszközök indítása** (Opcionális, igény szerint):
+2. **Eszközök indítása** (igény szerint):
     ```bash
     cd portainer
     docker compose up -d
