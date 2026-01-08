@@ -7,8 +7,6 @@ A fejlesztői környezet sikeresen telepítve lett. Az alábbiakban leírjuk a r
 - **Fő könyvtár**: `/home/alphaws/Develop`
 - **Traefik helye**: `/home/alphaws/Develop/tools/traefik`
 - **Elérési címek**:
-- **Elérési címek**:
-- **Elérési címek**:
     - Traefik Dashboard: [https://traefik.localhost/dashboard/](https://traefik.localhost/dashboard/)
     - Portainer: [https://portainer.localhost](https://portainer.localhost)
     - Mailhog: [https://mailhog.localhost](https://mailhog.localhost)
