@@ -4,7 +4,7 @@ services:
     container_name: adminer
     restart: unless-stopped
     networks:
-      - web-gateway
+      - traefik
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.adminer.rule=Host(`adminer.localhost`)"
@@ -13,5 +13,5 @@ services:
       - "traefik.http.services.adminer.loadbalancer.server.port=8080"
 
 networks:
-  web-gateway:
+  traefik:
     external: true

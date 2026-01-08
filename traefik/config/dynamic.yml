@@ -2,3 +2,9 @@ tls:
   certificates:
     - certFile: /etc/traefik/certs/local-cert.pem
       keyFile: /etc/traefik/certs/local-key.pem
+    - certFile: /etc/traefik/certs/econo-sim.pem
+      keyFile: /etc/traefik/certs/econo-sim-key.pem
+    - certFile: /etc/traefik/certs/apiport.pem
+      keyFile: /etc/traefik/certs/apiport-key.pem
+    - certFile: /etc/traefik/certs/apiport-test.pem
+      keyFile: /etc/traefik/certs/apiport-test-key.pem

@@ -31,10 +31,10 @@ services:
       - DOCKER_CLIENT_API_VERSION=1.44
       - DOCKER_HOST=unix:///var/run/docker.sock
     networks:
-      - web-gateway
+      - traefik
     restart: unless-stopped
 
 networks:
-  web-gateway:
-    name: web-gateway
+  traefik:
+    name: traefik
     driver: bridge

@@ -1,23 +1,30 @@
-# Projekt Sablonok (Templates)
+# Fejlesztői Környezet (Tools) Implementációs Terv
 
-A cél, hogy a fejlesztőnek ne kelljen nulláról írnia a `Dockerfile` és `docker-compose.yml` fájlokat minden új projektnél. Ezek a sablonok már illeszkednek a `tools`-ban lévő Traefik infrastruktúrához.
+A cél egy alapvető, Docker-alapú webfejlesztői környezet kialakítása, amely központi reverse proxy-t és menedzsment eszközöket biztosít.
 
-## Mappaszerkezet (`tools/templates/`)
+## Komponensek
 
-### 1. `python-fastapi/`
-Modern Python API fejlesztéshez.
-- **Dockerfile**: Python 3.11, `requirements.txt`, uvicorn.
-- **docker-compose.yml**: Traefik címkékkel (`fastapi-app.localhost`), hot-reload beállítással.
+### 1. Reverse Proxy (Traefik)
+- **Hely**: `tools/traefik`
+- **Portok**: 80 (HTTP), 443 (HTTPS), 8080 (Dashboard)
+- **Funkció**: Minden `.localhost` kérés kezelése és továbbítása a megfelelő konténerhez.
+- **SSL**: `mkcert` által generált lokális tanúsítványok.
 
-### 2. `php-general/` (vagy Laravel)
-Általános PHP fejlesztéshez (Apache vagy FPM).
-- **Dockerfile**: PHP 8.2, Composer, szükséges kiterjesztések (mysqli, pdo).
-- **docker-compose.yml**: Traefik címkék (`php-app.localhost`), volume mapping a kódhoz.
+### 2. Konténer Menedzsment (Portainer)
+- **Hely**: `tools/portainer`
+- **URL**: `https://portainer.localhost`
+- **Funkció**: Grafikus felület a Docker konténerek, image-ek és volume-ok kezeléséhez.
 
-### 3. `frontend-angular/`
-Frontend fejlesztéshez.
-- **Fejlesztési mód**: Node.js konténer, ami futtatja az `ng serve`-t.
-- **Traefik**: Mivel az `ng serve` websocketet használ a hot-reloadhoz, erre figyelni kell a címkéknél.
+### 3. Email Tesztelés (Mailhog)
+- **Hely**: `tools/mailhog`
+- **URL**: `https://mailhog.localhost`
+- **SMTP Port**: 1025
+- **Funkció**: Minden fejlesztés közben kiküldött email elkapása és megjelenítése.
 
-## Használat
-A felhasználó egyszerűen átmásolja a kívánt mappa tartalmát az új projektjébe, és futtatja a `docker compose up` parancsot.
+### 4. Adatbázis Menedzsment (Adminer)
+- **Hely**: `tools/adminer`
+- **URL**: `https://adminer.localhost`
+- **Funkció**: Webes kliens MySQL, PostgreSQL és egyéb adatbázisokhoz.
+
+## Integráció
+Minden eszköz közös Docker hálózaton (`web-gateway`) kommunikál, és a Traefik címkéken keresztül érhető el.

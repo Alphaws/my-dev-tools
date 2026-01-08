@@ -82,6 +82,36 @@ docker compose restart traefik
 
 > **Fontos**: A `*.localhost` wildcard sajnos nem minden környezetben működik tökéletesen (böngésző függő), ezért ajánlott az explicit domain nevek megadása a fenti módon.
 
+## 6. Külső Projektek Integrálása (Meglévő repók)
+
+Ha egy meglévő Docker-es projektet (pl. `prstart-lms`) szeretnél futtatni ebben a környezetben anélkül, hogy módosítanád a `docker-compose.yml`-t (amit verziókezelés alatt tartasz), használd a `docker-compose.override.yml`-t.
+
+**Lépések:**
+1.  Klónozd a repót: `git clone ...`
+2.  Generálj tanúsítványt a Traefik mappában: `mkcert ... "projekt.localhost"`
+3.  Hozz létre egy `docker-compose.override.yml` fájlt a projekt gyökerében:
+
+```yaml
+services:
+  app: # A szolgáltatás neve az eredeti compose fájlból
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=web-gateway" # A közös hálózat neve
+      - "traefik.http.routers.my-app.rule=Host(`projekt.localhost`)"
+      - "traefik.http.routers.my-app.tls=true"
+      # Ha az eredeti projekt nem állította be a Let's Encryptet, itt kapcsold ki a resolver kérést:
+      - "traefik.http.routers.my-app.tls.certresolver=" 
+    networks:
+      - traefik
+
+networks:
+  traefik:
+    external: true
+    name: web-gateway # A te lokális hálózatod neve
+```
+
+Ez a módszer tisztán tartja az eredeti projektfájlokat, miközben illeszti őket a helyi környezethez.
+
 ## Hibaelhárítás
 
 Ha "Permission Denied" hibát kapsz Docker parancsoknál:
