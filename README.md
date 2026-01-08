@@ -19,6 +19,75 @@ A rendszer Docker alapú, és az alábbi szolgáltatásokat nyújtja:
 - Docker & Docker Compose
 - `mkcert` (SSL tanúsítványokhoz)
 
+## Ubuntu telepítés (Docker, Compose, Node/npm, mkcert, stb.)
+
+Az alábbi lépések Ubuntu 22.04+ rendszeren működnek. Ha más verziót használsz, ellenőrizd a csomagneveket.
+
+### 1) Alap csomagok
+
+```bash
+sudo apt-get update
+sudo apt-get install -y ca-certificates curl gnupg lsb-release git
+```
+
+### 2) Docker Engine + Compose plugin
+
+```bash
+sudo install -m 0755 -d /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+sudo chmod a+r /etc/apt/keyrings/docker.gpg
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+  $(. /etc/os-release && echo \"$VERSION_CODENAME\") stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+sudo apt-get update
+sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+```
+
+Opció: Docker használata `sudo` nélkül:
+
+```bash
+sudo usermod -aG docker $USER
+newgrp docker
+```
+
+Ellenőrzés:
+
+```bash
+docker --version
+docker compose version
+```
+
+### 3) Node.js + npm (NVM)
+
+```bash
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+export NVM_DIR="$HOME/.nvm"
+source "$NVM_DIR/nvm.sh"
+nvm install --lts
+```
+
+Ellenőrzés:
+
+```bash
+node -v
+npm -v
+```
+
+### 4) mkcert
+
+```bash
+sudo apt-get install -y libnss3-tools
+curl -L -o /usr/local/bin/mkcert https://github.com/FiloSottile/mkcert/releases/latest/download/mkcert-linux-amd64
+sudo chmod +x /usr/local/bin/mkcert
+mkcert -install
+```
+
+### 5) Codex CLI (opcionális)
+
+Ha használod a Codex CLI-t, kövesd a hivatalos telepítési útmutatót. A telepítés módja kiadástól függ (npm/pipx/binary).
+
 ## Telepítés és Indítás
 
 A részletes telepítési lépéseket a [task.md](task.md) tartalmazza.
