@@ -8,3 +8,5 @@ tls:
       keyFile: /etc/traefik/certs/apiport-key.pem
     - certFile: /etc/traefik/certs/apiport-test.pem
       keyFile: /etc/traefik/certs/apiport-test-key.pem
+    - certFile: /etc/traefik/certs/grafana.pem
+      keyFile: /etc/traefik/certs/grafana-key.pem
