@@ -127,9 +127,9 @@ Lásd a [walkthrough.md](walkthrough.md) fájlt részletes útmutatóért.
 Röviden:
 1. Hozz létre egy `docker-compose.yml`-t a projektednek.
 2. Add hozzá a Traefik címkéket (`traefik.http.routers...`).
-3. Ha új domaint használsz, frissítsd a tanúsítványt:
+3. Ha új domaint használsz, generálj külön tanúsítványt (a script frissíti a Traefik TLS listáját is):
     ```bash
     cd traefik
-    mkcert -cert-file certs/local-cert.pem -key-file certs/local-key.pem "localhost" "*.localhost" "uj-projekt.localhost"
+    ./scripts/generate-certs.sh "uj-projekt.localhost"
     docker compose restart traefik
     ```

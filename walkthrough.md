@@ -83,15 +83,14 @@ A böngészőnek biztonságos kapcsolatot (lakat ikon) kell mutatnia.
 A rendszer `mkcert` segítségével biztosítja a HTTPS-t.
 A tanúsítványok helye: `/home/alphaws/Develop/tools/traefik/certs/`
 
-Ha új domain-t szeretnél használni (pl. `uj-projekt.localhost`), újra kell generálnod a tanúsítványt, hogy tartalmazza az új nevet is:
+Mivel a `*.localhost` wildcard nem működik minden környezetben, a domainekhez külön tanúsítványokat használunk.
+Ha új domain-t szeretnél használni (pl. `uj-projekt.localhost`), generálj külön certet (a script frissíti a TLS listát is):
 
 ```bash
 cd /home/alphaws/Develop/tools/traefik
-mkcert -cert-file certs/local-cert.pem -key-file certs/local-key.pem "localhost" "*.localhost" "uj-projekt.localhost"
+./scripts/generate-certs.sh "uj-projekt.localhost"
 docker compose restart traefik
 ```
-
-> **Fontos**: A `*.localhost` wildcard sajnos nem minden környezetben működik tökéletesen (böngésző függő), ezért ajánlott az explicit domain nevek megadása a fenti módon.
 
 ## 6. Külső Projektek Integrálása (Meglévő repók)
 

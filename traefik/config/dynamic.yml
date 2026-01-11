@@ -1,12 +1,16 @@
 tls:
   certificates:
-    - certFile: /etc/traefik/certs/local-cert.pem
-      keyFile: /etc/traefik/certs/local-key.pem
-    - certFile: /etc/traefik/certs/econo-sim.pem
-      keyFile: /etc/traefik/certs/econo-sim-key.pem
-    - certFile: /etc/traefik/certs/apiport.pem
-      keyFile: /etc/traefik/certs/apiport-key.pem
-    - certFile: /etc/traefik/certs/apiport-test.pem
-      keyFile: /etc/traefik/certs/apiport-test-key.pem
-    - certFile: /etc/traefik/certs/grafana.pem
-      keyFile: /etc/traefik/certs/grafana-key.pem
+    - certFile: /etc/traefik/certs/traefik.localhost.pem
+      keyFile: /etc/traefik/certs/traefik.localhost-key.pem
+    - certFile: /etc/traefik/certs/portainer.localhost.pem
+      keyFile: /etc/traefik/certs/portainer.localhost-key.pem
+    - certFile: /etc/traefik/certs/mailhog.localhost.pem
+      keyFile: /etc/traefik/certs/mailhog.localhost-key.pem
+    - certFile: /etc/traefik/certs/adminer.localhost.pem
+      keyFile: /etc/traefik/certs/adminer.localhost-key.pem
+    - certFile: /etc/traefik/certs/grafana.localhost.pem
+      keyFile: /etc/traefik/certs/grafana.localhost-key.pem
+    - certFile: /etc/traefik/certs/metrics.localhost.pem
+      keyFile: /etc/traefik/certs/metrics.localhost-key.pem
+    - certFile: /etc/traefik/certs/whoami.localhost.pem
+      keyFile: /etc/traefik/certs/whoami.localhost-key.pem
